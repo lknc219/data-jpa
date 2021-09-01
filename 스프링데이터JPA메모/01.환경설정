@@ -1,0 +1,24 @@
+환경설정
+
+start.spring.io
+gradle
+java
+
+web
+lombok
+h2
+jpa
+
+crtl+alt+s -> build 검색 -> Build,Execution,Deployment -> Gradle ->  build and run using, Run tests using 을 IntelliJ IDEA로 바꿔줌 (테스트 코드 속도 향상)
+crtl+alt+s -> Annotation Processors -> Enable annotation processing 체크하기
+
+h2 데이터베이스를 받아야 하는데 Dependencies 에서 h2 버전을 확인해서 받거나, 지금 사용중인 스프링 부트 버전을 spring.io -> projects -> spring boot -> learn -> reference doc -> dependency Versions 에서 해당 버전 확인해서 다운로드
+
+파라미터 찍히는데 도움되는 라이브러리 implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.7' 
+
+20210901
+HelloController로 스프링 동작 확인
+Member, Team 엔티티 만들고 DB와 연동되어 잘 만들어졌는지 테스트코드 작성 후 확인
+MemberJpaRepository클래스의 순수 JPA와 JpaRepository 인터페이스를 extends한 MemberRepository 인터페이스를 만들어 둘다 어떤방식으로 동작하는지 Test 코드를 작성해 확인
+
+하나 만들때마다 테스트 코드 작성해서 확인하는것을 습관화 하자
