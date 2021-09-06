@@ -66,4 +66,9 @@
   Member로 단건 조회 했을때는 값이 없으면 null 이 나온다
   
   순수 JPA는 Exception이 터진다.
-   -> 데이터가 있을지 없을지 모르면 옵셔널 타입으로 반환받는게 좋다.
+   -> 데이터가 있을지 없을지 모르면 옵셔널 타입으로 반환 받는게 좋다.
+   
+  단건조회를 했는데 중복데이터로 두건이 조회되면 Exception이 발생한다.
+  
+  공식 문서에 보면 더 많은 반환타입이 있는것을 확인할 수 있다.
+  https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repository-query-return-types
