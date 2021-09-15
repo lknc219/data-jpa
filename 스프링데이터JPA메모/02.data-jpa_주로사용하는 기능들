@@ -76,4 +76,39 @@
 ------------------------------------------------------------------------------------------------------------------------
 
 스프링 데이터 JPA 페이징과 정렬
+	
+	정렬과 페이징이 가능하다.
 
+	스프링 데이터 jpa 인터페이스에 파라미터를 넘길때 Pageable 을 구현한 것을 사용하면 되는데 PageRequest 를 많이 사용한다.
+	반환타입에 따라서 totalCount를 날릴지 안난릴지 결정됨 Page, Slice, Collection 등  (Slice 를 사용시 토탈카운트 쿼리를 날리지 않는다.)
+	
+	Slice는 limit에 +1 을 해서 쿼리를 날리기 떄문에 다음 페이지가 있는지 확인할 수 있다.
+	
+	Page는 1이 아니라 0부터 시작이다.
+	
+	.size
+	.getTotalElements
+	.getNumber
+	.getTotalPages
+	.isFirst
+	.hasNext
+	Page의 반환타입은 위의 메서드를 지원한다.
+	Slice는 TotalCount 쿼리가 없기때문에 TotalElement나 TotalPage를 지원하지 않는다.
+	
+	Page 타입을 DTO로 변환하기
+		page.map(member -> new MemberDto(member.getId, member.getUsername(), null)); 
+			Page<MemberDto> 로 변환할 수 있다.
+			
+	
+------------------------------------------------------------------------------------------------------------------------
+
+벌크성 수정 쿼리
+
+  @Modifying(clearAutomatically = true)
+  @Query("update Member m set m.age = m.age + 1 where m.age >= :age")
+  int bulkAgePlus(@Param("age") int age);
+  
+  한번에 여러 로우를 변경하는 쿼리를 날릴 때.
+  @Modifying 어노테이션을 입력해주고 clearAutomatically = true 를 넣지 않으면 clear가 되지 않기 때문에 다시 조회 시 업데이트 완료 된 데이터로 출력이 안되고,
+  영속석 컨텍스트에 올라와있는 데이터가 반환되기 때문에 주의해서 사용해야한다.
+  
